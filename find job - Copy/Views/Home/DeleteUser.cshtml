@@ -1,0 +1,58 @@
+﻿@model WebApplication2.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "DeleteUser";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+
+<h3>هل متاكد من الحذف؟</h3>
+<div>
+    <h4>المستخدمين</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+       
+        <dd>
+            <img src="~/Uploads/@Html.DisplayFor(model => model.userPictur)"
+                 class="thumbnail" style="width:150px;height:150px" />
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+       
+       
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Useres")
+        </div>
+    }
+</div>

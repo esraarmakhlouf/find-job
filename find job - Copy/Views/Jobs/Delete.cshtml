@@ -1,0 +1,78 @@
+﻿@model find_job.Models.Job
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<h3>هل انت متاكد من حذف هذه الوظيفة؟</h3>
+<div>
+    <hr />
+        <div class="panel panel-info col-md-8" style=" margin:20px 100px 20px 0">
+            <div class="col-md-8" style="margin: 20px -20px 20px 20px ;">
+                <dl class="dl-horizontal">
+                   
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Category.categoryName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Category.categoryName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.jopTitle)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.jopTitle)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.jopContent)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.jopContent)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.jobAddress)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.jobAddress)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.jobSalary)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.jobSalary)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.jobDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.jobDate)
+                    </dd>
+                </dl>
+</div>
+
+            <div class="col-md-4" style=" right: 100px;padding-right: 0px;padding-left: 0px;">
+                    <img src="~/Uploads/@Html.DisplayFor(model => model.jopImage)"
+                         class="thumbnail" style="width:150px;height:150px" />     
+            </div>
+        </div>
+            
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" style="margin-top:20px">
+                <input type="submit" value="تاكيد الحذف" class="btn btn-danger" /> |
+                @Html.ActionLink("العودة الي القائمة", "Index")
+            </div>
+        }
+    </div>

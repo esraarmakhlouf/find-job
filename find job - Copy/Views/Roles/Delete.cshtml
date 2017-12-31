@@ -1,0 +1,26 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+
+<h3>هل انت متاكد ترد مسح هذه الصلاحية؟</h3>
+<div>
+    <h4> مسح هذه الصلاحية</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            نوع الصلاحيه
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="مسح" class="btn btn-danger" /> |
+            @Html.ActionLink("العوده اللي القائمه", "Index")
+        </div>
+    }
+</div>

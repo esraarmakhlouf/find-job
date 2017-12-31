@@ -1,0 +1,67 @@
+﻿@model find_job.Models.ADModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ADModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.user.UserType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.UserType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adURL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adURL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminAccept)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminAccept)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,80 @@
+﻿@model find_job.Models.Job
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<h2>تفاصيل الوظيفة</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           
+        </dt>
+
+        <dd>
+            <img src="~/Uploads/@Html.DisplayFor(model => model.jopImage)"
+                 class="thumbnail" style="width:250px;height:150px" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.categoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.categoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jopTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jopTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jopContent)
+        </dt>
+
+        <dd class="dd-block">
+           @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.jopContent).ToString()))
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.jobAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobAddress)
+
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jobSalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobSalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.jobDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jobDate)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("التقدم لهذة الوظيفة", "apply", new { id = Model.id },new { @class="btn btn-success"}) |
+    @Html.ActionLink("عودة الي القائمة", "Index",new { @class="btn btn-default"})
+</p>

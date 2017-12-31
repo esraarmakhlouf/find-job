@@ -1,0 +1,53 @@
+﻿@model find_job.Models.Job
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<h2>تفاصيل</h2>
+
+<div>
+    <h4>وظيفة</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.categoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.categoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jopTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jopTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jopContent)
+        </dt>
+
+        <dd>
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => model.jopContent).ToString()))
+@*            @Html.DisplayFor()*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jopImage)
+        </dt>
+
+        <dd>
+            <img src="~/Uploads/@Html.DisplayFor(model => model.jopImage)"
+                 class="thumbnail" style="width:48px;height:48px" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.id }) |
+ @Html.ActionLink("العودة الي القائمة", "Index")
+</p>

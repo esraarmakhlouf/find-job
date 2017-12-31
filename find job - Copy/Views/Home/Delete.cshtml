@@ -1,0 +1,56 @@
+﻿@model find_job.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3> هل انت متاكد ترد حذف هذا الطلب؟</h3>
+<div>
+     <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.job.jopTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job.jopTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.user.UserType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.user.UserType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.applyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.applyDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("العوده للقائمة", "getJobsByUser")
+        </div>
+    }
+</div>

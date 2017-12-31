@@ -1,0 +1,40 @@
+﻿@model IEnumerable<find_job.Models.category>
+
+@{
+    ViewBag.Title = "قائمة انوع الوظائف";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<h2>قائمة انوع الوظائف</h2>
+
+<p>
+    @Html.ActionLink("انشاء نوع جديد", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.categoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.categoryDescripation)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.categoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.categoryDescripation)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.id }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id=item.id }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

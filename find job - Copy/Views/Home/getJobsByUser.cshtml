@@ -1,0 +1,52 @@
+﻿@model IEnumerable<find_job.Models.ApplyForJob>
+
+@{
+    ViewBag.Title = "getJobsByUser";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<h2>الوظيفة التي تقدمت اليها</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.job.jopTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.user.UserType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.applyDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.job.jopTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.UserType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.applyDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "detailsOfJob", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

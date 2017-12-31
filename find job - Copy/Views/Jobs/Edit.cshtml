@@ -1,0 +1,129 @@
+﻿@model find_job.Models.Job
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<h2>تعديل</h2>
+<script src="~/scripts/ckeditor/ckeditor.js"></script>
+
+@using (Html.BeginForm("Edit", "Jobs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+  
+    <div class="form-horizontal">
+        <div class="alert alert-danger" id="error-div" style="display:none">
+            <span id="view-err">
+
+            </span>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.jopImage)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jopTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.jopTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.jopTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jopContent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.TextAreaFor(model => model.jopContent, new { htmlAttributes = new { @class = "form-control1 "  },id= "jopContent" })
+                @Html.ValidationMessageFor(model => model.jopContent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jopImage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                <input type="file" name="Upload" id="JobImage"/>
+                @Html.ValidationMessageFor(model => model.jopImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CategoryId, "نوع الوظيفة", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.jobAddress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.jobAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobSalary, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Html.EditorFor(model => model.jobSalary, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.jobSalary, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jobDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-7">
+                @Model.jobDate
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="حفظ" class="btn btn-success" id="save" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+
+    @Html.ActionLink("العودة الي القائمة", "Index")
+</div>
+@section scripts{
+    <script>
+        $(function () {
+            $("#save").click(function () {
+                if ($("#JobImage").val() != "") {
+                    //    $("#error-div").fadeIn();
+                    //    $("#view-err").append("رجاء قم بتحمل صورة الوظيفة");
+                    //    return false;
+                    //}
+                    var fileName = document.getElementById("JobImage").value;
+
+                    var extensionImg = fileName.substr(fileName.lastIndexOf('.' )+1);
+                 
+                    var validExtensions = ['jpg', 'png', 'gif', 'bmp'];
+                    if ($.inArray(extensionImg, validExtensions) == -1) {
+
+                        $("#error-div").fadeIn();
+                        $("#view-err").value = null;
+                        $("#view-err").append("رجاء قم بتحمل صورة بامتداد صحيح");
+                        return false;
+                    }
+                    var myFileSize = document.getElementById("JobImage").files[0].size / 1024 / 1024;
+                    if (myFileSize > 1) {
+                        $("#error-div").fadeIn();
+                        $("#view-err").append("رجاء قم بتحمل صورة بحجم اقل من 2 ميجا ");
+                        return false;
+                    }
+                }
+            });
+
+        });
+    </script>
+    }
+<script>
+    CKEDITOR.replace("jopContent");
+</script>

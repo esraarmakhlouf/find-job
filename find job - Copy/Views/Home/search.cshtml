@@ -1,0 +1,32 @@
+﻿@model IEnumerable<find_job.Models.Job>
+
+@{
+    ViewBag.Title = "search";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+<h2 class="panel-heading">نتايج البحث</h2>
+@if (Model.Count() < 1)
+{
+    <p style="margin-right:20px">لا يوجد وظيفة  بهذا الاسم </p>
+}
+else
+{
+<div class="panel-group">
+   
+     
+
+        <div class="row panel-body fixed-size">
+            @foreach (var subItem in Model)
+            {
+                <div class="col-md-3 thumbnail " style="min-height:450px">
+                    <img src="~/Uploads/@subItem.jopImage" />
+                    <h3 class="panel panel-heading">@Html.DisplayFor(modelItem => subItem.jopTitle)</h3>
+                    <h5>@Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(modelItem => subItem.jopContent).ToString()))</h5>
+                    <h5>@Html.DisplayFor(modelItem => subItem.Category.categoryName)</h5>
+                    @Html.ActionLink("التفاصيل", "Details", new { id = subItem.id }, new { @class = "btn btn-primary btn-block" ,id="search" })
+                </div>
+            }
+        </div>
+    </div>
+
+}

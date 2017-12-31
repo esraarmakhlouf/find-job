@@ -1,0 +1,62 @@
+﻿@model IEnumerable<find_job.Models.Job>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<h2 style="color:#4c736a">الوظائف اللي قمت بنشرها</h2>
+
+
+@if (Model.Count() <1)
+{ 
+    <p style="margin-right:20px">لم تقم بنشر اي وظيفة حتي الان اذا ارد نشر وظيفة جديدة @Html.ActionLink("اضغط هنا ", "Create") ...</p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("نشر وظيفة جديدة", "Create")
+    </p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.categoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jopTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jopContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jopImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.categoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jopTitle)
+        </td>
+        <td>
+            @Html.Raw(HttpUtility.HtmlDecode(Html.DisplayFor(model => item.jopContent).ToString()))
+        </td>
+        <td>
+            <img src="~/Uploads/@Html.DisplayFor(modelItem => item.jopImage)"
+                 class="thumbnail" style="width:55px;height:55px" />
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id = item.id }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id = item.id }) |
+            @Html.ActionLink("حذف", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>
+}

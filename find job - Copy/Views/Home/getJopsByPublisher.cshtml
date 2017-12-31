@@ -1,0 +1,43 @@
+﻿@model IEnumerable<find_job.Models.jobsViewModel>
+
+@if (Model.Count() < 1)
+{
+    <p style="margin-right:40px;margin-top:40px;">لم تقم بنشر اي وظيفة حتي الان اذا ارد نشر وظيفة جديدة @Html.ActionLink("اضغط هنا ", "Create") ...</p>
+}
+else
+{
+
+    foreach (var gr in Model)
+    {
+
+        <h3>@gr.jobTitle</h3>
+        <table class="table table-over">
+            <tr>
+                <th>
+                    اسم الباحث
+                </th>
+                <th>
+                    رسالة الباحث
+                </th>
+                <th>
+                    تاريخ الارسال
+                </th>
+            </tr>
+
+           @foreach (var item in gr.item)
+           {
+            <tr>
+                <td>
+                    @item.user.UserName
+                </td>
+                <td>
+                    @item.message
+                </td>
+                <td>
+                    @item.applyDate
+                </td>
+            </tr>
+           }
+        </table>
+    }
+}     

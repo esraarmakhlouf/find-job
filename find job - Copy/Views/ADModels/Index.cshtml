@@ -1,0 +1,64 @@
+﻿@model IEnumerable<find_job.Models.ADModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_mainLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.user.UserType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminAccept)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.user.UserType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adURL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdminAccept)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

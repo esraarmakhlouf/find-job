@@ -1,0 +1,60 @@
+﻿@using WebApplication2.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="row">
+    <div class="col-md-8" style="background-color:white; margin-right:17%;margin-bottom:50px;margin-top:50px">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+            @Html.AntiForgeryToken()
+           
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.usraName, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.usraName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.usraName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-8">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-4 col-md-10">
+                        <input type="submit" value="سجل" class="btn btn-primary" style="width:30%;" />
+                        <div class="_1rf5">
+                            <span class="_1rf8"></span>
+                        </div>
+                        <p class="col-md-4 btn btn-success" style="width:30%;margin-top:10px;">
+                         
+                            <a href="~/Account/Register" style=" color:white">انشاء حساب جديد</a>
+                        </p>
+                    </div>
+                </div>
+
+                @* Enable this once you have account confirmation enabled for password reset functionality
+                    <p>
+                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
+                    </p>*@
+        }
+
+    </div>
+
+</div>
+
+
